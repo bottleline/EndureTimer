@@ -16,11 +16,11 @@
 ## 주요 구현 장면
 
 ### 1. 카운트다운 설정기능 
-![bt_rs](https://user-images.githubusercontent.com/42457589/132491009-ab3fbeb9-16f6-42fe-97bd-aa3f0f201e50.gif)  
+![endure1](https://user-images.githubusercontent.com/42457589/142130083-e700496d-308c-429c-a82f-7c4b5629eaa1.gif)  
 시작날을 카운트다운 한다.
 
 ### 2. 실시간 채팅기능
-![crop](https://user-images.githubusercontent.com/42457589/132491006-89d419a6-0604-41d8-beb2-e88d7cc8fe6c.gif)  
+![endure2](https://user-images.githubusercontent.com/42457589/142130103-084805f2-65d0-4ab7-ae2b-ef5de8bee636.gif)  
 MQTT 서버를 통해 실시간 채팅을 한다. 채팅 데이터는 MQTT 서버 DB에 저장된다.
 
 
