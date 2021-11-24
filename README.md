@@ -33,7 +33,8 @@
 
 
 ### 2. 실시간 채팅기능
- ![ezgif-1-4110c16c2467](https://user-images.githubusercontent.com/42457589/142845653-8003218c-ae31-4689-ba32-faa00c134cac.gif)
+![endure4](https://user-images.githubusercontent.com/42457589/143208926-4fad4b46-d6fc-4053-89f3-ee5a2c3f14b4.gif)
+
 MQTT 서버를 통해 실시간 채팅을 한다. 채팅 데이터는 MQTT 서버 DB에 저장된다.
 
 
