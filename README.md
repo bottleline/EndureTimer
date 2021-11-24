@@ -14,7 +14,14 @@
 - `Swift 5`, `Xcode 13`
 - `CocoaMQTT`
 - CentOS7 + MosquittoMQTT + Mysql
- 
+
+ ## 적용한 주요 Layout
+- `PageViewController`
+- `NavigationController`
+
+ ## 한계점
+- Cocoa MQTT를 Background 상태에도 실행해보려 AppDelegate에 mqtt 객체를 생성하였지만 Background 알람기능을 개발하는데 실패하였다.  
+
 ## 주요 구현 장면
 
 ### 1. 카운트다운 설정기능 
