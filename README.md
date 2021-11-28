@@ -28,13 +28,13 @@
 ## MVVM 구조
 채팅기능에 MVVM 구조를 적용  
 
-ChatViewController (View)
-        ↓
-  ChatViewModel (ViewModel)
-        ↓
-    ChatModel (Model)
-        ↓
-     MQTTRepo (원시데이터)  
+ChatViewController (View)  
+        ↓  
+  ChatViewModel (ViewModel)  
+        ↓  
+    ChatModel (Model)  
+        ↓  
+     MQTTRepo (원시데이터)   
        
 ### 1. mqtt 서버에서 전송하는 원시데이터 수신
 ``` swift
