@@ -69,7 +69,7 @@ class ChatViewModel{
  var chatModel = ChatModel()
 .
 .
-chatModel.chatData // 원시데이터를 구독
+chatModel.chatData // Model 의 chatData를 구독
             .observe(on: ConcurrentDispatchQueueScheduler(qos: .default)) // 컨커런트 작업
             .subscribe(onNext:{
             self.chatData.onNext(makeUserString($0)) // chatData 의 내용을 유저에게 보여지는 string 으로 가공하여 방출
@@ -84,7 +84,7 @@ class ChatViewController:UIViewController{
  var viewModel = ChatViewModel()
 .
 .
-viewModel.chatData // 원시데이터를 구독
+viewModel.chatData // viewModel 의 chatData 를 구독
             .observe(on: MainScheduler.Instance) // 메인스레드작업
             .subscribe(onNext:{
             self.chatDatas.append($0)
