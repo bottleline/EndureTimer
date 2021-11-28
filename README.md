@@ -28,31 +28,30 @@
 ## MVVM 구조
 채팅기능에 MVVM 구조를 적용
 
-# mqtt 서버에서 전송하는 원시데이터 수신
+### 1. mqtt 서버에서 전송하는 원시데이터 수신
 ``` swift
-import RxSwift
 class MQTTRepo{
  var chatString = PublishSubject<[String]>()
  .
  . 
-} 
-extension MQTTRepo: CocoaMQTTDelegate {
-.
-.
-    func mqtt(_ mqtt: CocoaMQTT, didReceiveMessage message: CocoaMQTTMessage, id: UInt16) {
-            chatString.onNext([message.topic,message.string])
-        }
-    }
- .
- .
+ func mqtt(_ mqtt: CocoaMQTT, didReceiveMessage message: CocoaMQTTMessage, id: UInt16) {
+        chatString.onNext([message.topic,message.string]) // 원시데이터 방출
+     }
+ }
 ```
-       ↓
-       ↓
-       ↓
+### 2. 원시데이터를 chatData 구조체로 가공 (Model)
 ``` swift
-
-class ChatModel ---> MQTTRepo 에서 받은 원시데이터를 chatData() 구조체로 가공
-       ↓
+class ChatModel{
+ var chatData = PublishSubject<ChatData>()
+ var mqttRepo = MQTTRepo()
+.
+.
+mqttRepo.chatString // 원시데이터를 구독
+            .observe(on: ConcurrentDispatchQueueScheduler(qos: .default)) // 컨커런트 작업
+            .subscribe(onNext:{
+            self.chatData.onNext(self.makeChatData($0[0], $0[1])) // 원시데이터를 chatData 구조체로 가공하여 방출
+        }).disposed(by: disposeBag)
+}
 ```
 
 ## 주요 구현 장면
