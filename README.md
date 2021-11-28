@@ -26,8 +26,16 @@
 - Cocoa MQTT를 Background 상태에도 실행해보려 AppDelegate에 mqtt 객체를 생성하였지만 Background 알람기능을 개발하는데 실패하였다.  
 
 ## MVVM 구조
-채팅기능에 MVVM 구조를 적용
+채팅기능에 MVVM 구조를 적용  
 
+ChatViewController (View)
+        ↓
+  ChatViewModel (ViewModel)
+        ↓
+    ChatModel (Model)
+        ↓
+     MQTTRepo (원시데이터)  
+       
 ### 1. mqtt 서버에서 전송하는 원시데이터 수신
 ``` swift
 class MQTTRepo{
