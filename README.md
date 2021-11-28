@@ -13,6 +13,9 @@
 ## 사용한 기술
 - `Swift 5`, `Xcode 13`
 - `CocoaMQTT`
+- `RxSwift`
+- `RxCocoa`
+- `RxRelay`
 - CentOS7 + MosquittoMQTT + Mysql
 
  ## 적용한 주요 Layout
@@ -21,6 +24,10 @@
 
  ## 한계점
 - Cocoa MQTT를 Background 상태에도 실행해보려 AppDelegate에 mqtt 객체를 생성하였지만 Background 알람기능을 개발하는데 실패하였다.  
+
+## MVVM 구조
+```
+```
 
 ## 주요 구현 장면
 
