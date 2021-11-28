@@ -68,13 +68,6 @@ chatModel.chatData // 원시데이터를 구독
         }).disposed(by: disposeBag)
 }
 
-func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ChatTableViewCell", for: indexPath) as! ChatTableViewCell
-        cell.nameLabel.text = chatDatas[indexPath.row].name
-        cell.txtLabel.text = chatDatas[indexPath.row].text
-      
-        return cell
-    }
 ```
 ### 4. TableView 에 내용물 표시 (View)
 ``` swift
@@ -92,9 +85,17 @@ viewModel.chatData // 원시데이터를 구독
 .
 .
 
+func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ChatTableViewCell", for: indexPath) as! ChatTableViewCell
+        cell.nameLabel.text = chatDatas[indexPath.row].name
+        cell.txtLabel.text = chatDatas[indexPath.row].text
+      
+        return cell
+    }
 }
 
 ```
+
 
 ## 주요 구현 장면
 
