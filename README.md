@@ -54,6 +54,48 @@ mqttRepo.chatString // 원시데이터를 구독
 }
 ```
 
+### 3. chatData 구조체의 내용을 화면에 보여질 string으로 가공 (ViewModel)
+``` swift
+class ChatViewModel{
+ var chatData = PublishSubject<ChatData>()
+ var chatModel = ChatModel()
+.
+.
+chatModel.chatData // 원시데이터를 구독
+            .observe(on: ConcurrentDispatchQueueScheduler(qos: .default)) // 컨커런트 작업
+            .subscribe(onNext:{
+            self.chatData.onNext(makeUserString($0)) // chatData 의 내용을 유저에게 보여지는 string 으로 가공하여 방출
+        }).disposed(by: disposeBag)
+}
+
+func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ChatTableViewCell", for: indexPath) as! ChatTableViewCell
+        cell.nameLabel.text = chatDatas[indexPath.row].name
+        cell.txtLabel.text = chatDatas[indexPath.row].text
+      
+        return cell
+    }
+```
+### 4. TableView 에 내용물 표시 (View)
+``` swift
+class ChatViewController:UIViewController{
+ var chatDatas = [ChatData]()
+ var viewModel = ChatViewModel()
+.
+.
+viewModel.chatData // 원시데이터를 구독
+            .observe(on: MainScheduler.Instance) // 메인스레드작업
+            .subscribe(onNext:{
+            self.chatDatas.append($0)
+            self.tableView.reloadData()
+        }).disposed(by: disposeBag)
+.
+.
+
+}
+
+```
+
 ## 주요 구현 장면
 
 ### 1. 카운트다운 설정기능 
