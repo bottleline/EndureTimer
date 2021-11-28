@@ -26,7 +26,33 @@
 - Cocoa MQTT를 Background 상태에도 실행해보려 AppDelegate에 mqtt 객체를 생성하였지만 Background 알람기능을 개발하는데 실패하였다.  
 
 ## MVVM 구조
+채팅기능에 MVVM 구조를 적용
+
+# mqtt 서버에서 전송하는 원시데이터 수신
+``` swift
+import RxSwift
+class MQTTRepo{
+ var chatString = PublishSubject<[String]>()
+ .
+ . 
+} 
+extension MQTTRepo: CocoaMQTTDelegate {
+.
+.
+    func mqtt(_ mqtt: CocoaMQTT, didReceiveMessage message: CocoaMQTTMessage, id: UInt16) {
+            chatString.onNext([message.topic,message.string])
+        }
+    }
+ .
+ .
 ```
+       ↓
+       ↓
+       ↓
+``` swift
+
+class ChatModel ---> MQTTRepo 에서 받은 원시데이터를 chatData() 구조체로 가공
+       ↓
 ```
 
 ## 주요 구현 장면
